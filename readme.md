@@ -201,3 +201,72 @@ we use isNaN to check if NaN.
     if it is not required at first put it in the body.
         the order is important but put it in the body to keep ur website faster...
 
+-------------------------------------------------------------------------------------------------------
+                                Talking to Servers
+                                -------------------
+JSON: JavaScript Object Notation.
+Some times you want to request additional data from the server after your page has loaded. Imagine like scrolling through your Facebook or Twitter feeds: when you reach the bottom it requests more data from the server to keep your infinite doomscroll going.
+
+Requesting data from the server after the page has loaded is called AJAX. AJAX is an old acronym that has been around for a while and actually now doesn't make any sense but we still use it. It stands for asynchronous JavaScript and XML (we don't typically use XML anymore.) However the name AJAX stuck so that's what it means.
+
+Before we hoptoo much into the AJAX portion, let's spend a bit with JSON. We need some standard language that your frontend website can speak with your backend, someway to encode messages. Think of it like morse code: we need some way that both the sender and receiver of messages can encode their messages so it's understood by both.
+
+This is what JSON is. It stands for JavaScript Object Notation and it looks a lot like, surprise-surpise, JavaScript objects.
+
+        {
+            "name": "Luna",
+            "age": 10,
+            "breed": "Havanese",
+            "location": {
+                "city": "Seattle",
+                "state": "WA"
+            }
+        }
+Looks like valid JavaScript, right? That's because it is! We could literally copy-and-paste that code straight into our JavaScript code and it'd just work. That's because 99.999999% of all JSON is valid JavaScript (there are some corner cases but I'd bet most devs didn't even know that.)
+
+So let's try it out. Let's pretend we submitted a request to a server and got back a response. The response will always come back as a string so we have to convert it to an object. Luckily JavaScript can do that for us.
+
+# pretend this came from a server instead of me just declaring it here.
+    const responseFromServer = `{"name": "Luna","age": 10,"breed": "Havanese","location": {"city":"Seattle","state": "WA"}}`;
+    console.log(responseFromServer); // a string
+    const responseObject = JSON.parse(responseFromServer);
+    console.log(responseObject.name); // just the name
+    console.log(responseObject.location.city); // just the city
+    console.log(responseObject); // the whole object
+# result 
+        "{\"name\": \"Luna\",\"age\": 10,\"breed\": \"Havanese\",\"location\": {\"city\":\"Seattle\",\"state\": \"WA\"}}"
+        "Luna"
+        "Seattle"
+    Object {
+        "age": 10,
+        "breed": "Havanese",
+        "location": Object {
+          "city": "Seattle",
+          "state": "WA",
+        },
+        "name": "Luna",
+    }
+That's what the JSON builtin object is for, handling data to and from JSON.
+Escape Characters
+You probably see a lot of \ being added. These are called escape characters. Notice it's showing the string between " but the JSON uses " inside of it. The way you prevent that " from ending the string is using \" to signify that you're wanting to use the " inside the string. So if you wanted to have a string of just one " you'd need to do const quotes = "\"". Or you could just do '"' too!.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

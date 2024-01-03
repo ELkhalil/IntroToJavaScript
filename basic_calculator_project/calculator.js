@@ -5,11 +5,12 @@ const screen = document.querySelector(".screen");
 
 
 function buttonClick(value) {
-    if (isNaN(parseInt(value)))
-        handleSymbole(value);
-    else
-        handleNumber(value);
-    rerender();
+    console.log("you clicked");
+    // if (isNaN(parseInt(value)))
+    //     handleSymbole(value);
+    // else
+    //     handleNumber(value);
+    // rerender();
 }
 
 function handleNumber(number) {
