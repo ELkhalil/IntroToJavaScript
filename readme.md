@@ -250,6 +250,18 @@ That's what the JSON builtin object is for, handling data to and from JSON.
 Escape Characters
 You probably see a lot of \ being added. These are called escape characters. Notice it's showing the string between " but the JSON uses " inside of it. The way you prevent that " from ending the string is using \" to signify that you're wanting to use the " inside the string. So if you wanted to have a string of just one " you'd need to do const quotes = "\"". Or you could just do '"' too!.
 
+# OOP in JavaScript
+    "Everything in JS, is an object"
+    - obj in js is like obj in real life
+    - they have properties and things they can do (methods)
+    Builtins objects:
+        va names = ['tyu', 'crystal', 'mario']
+            if i run names we can see the obj content and we will be able to find the methods
+            names.sort()
+        - the mother of all obj is the window obj
+        - one thing to remember is that primitive data types are not objects but javascript gives a default wrapping to 
+        them if we try to use them as object JS will wrap them inside a temporary object...
+# Prototype Property - Prototypes Fundamentals
 
 
 
