@@ -261,20 +261,184 @@ You probably see a lot of \ being added. These are called escape characters. Not
         - the mother of all obj is the window obj
         - one thing to remember is that primitive data types are not objects but javascript gives a default wrapping to 
         them if we try to use them as object JS will wrap them inside a temporary object...
-# Prototype Property - Prototypes Fundamentals
 
+--------------------------------------------------------------------------------------------------------------------
+                JavaScript Under The Hood
+    how things works behind the scene, i wanted to understand the core functionalities of it to help me expand my knowledge
 
+# JavaScript Principles:
+    javascrirpt does not do fancy things it only go through our block of code and do the following:
+    Thread of execution:
+        when js code runs it
+        - goes throught the code line by  line and runs/execute each line knowns as the thread of execution
+        - saves the data like strings and arrays so we can use that data later in its memory
+            we can even save code ('functions')
+# Vanilla JavaScript
+    Learned more about why should i use vanilla js before even moving to a framework.... i downloaded a pdf that contains the course slide so no need to
+    take notes here go to: external_srcs/slides.pdf
 
+# Getting a bit inside the server side of JS
+    known as node js so what is it ?
+        Node.js is an open source server environment
+        Node.js is free
+        Node.js runs on various platforms (Windows, Linux, Unix, Mac OS X, etc.)
+        Node.js uses JavaScript on the server   
+    How does it work?
+        we all know that js is a client side language that helps makes website interactive, it runs in a web browser
+        from here someone took the idea and said: why not run the same javascript code but in a different env meaning outside 
+        of a web browser, and it comes the idea of:
+        Node.js is built on the V8 JavaScript engine, which is an open-source JavaScript engine developed by Google. V8 is known for its high-performance execution of JavaScript code. someone took it and build on it another env calles node js that help us execute code outside of a browser...
+    Node.js is not a programming language; it is a runtime environment for executing JavaScript code on the server side. JavaScript, traditionally known as a client-side scripting language for web browsers, is used to create dynamic and interactive web pages. However, with Node.js, JavaScript can also be executed on the server, allowing developers to build scalable and high-performance server-side applications.
 
+# The Story of Node.js
+    - Introduction to Node.js:
+        Node.js is a cool tech that lets you run JavaScript code outside of a web browser. Ryan Dahl created it in 2009 and the Node.js community has been keeping it up ever since.
 
+    - The Birth of Node.js:
+        Ryan Dahl was tired of dealing with the limitations of web browsers and the inefficiencies of server-side scripting languages, so he decided to create Node.js. He wanted a way to build scalable network applications that could handle a large number of connections with high throughput.
 
+    - The First Release of Node.js:
+        Node.js was released in 2009. It was based on the V8 JavaScript engine developed by Google for its Chrome web browser. The first version of Node.js included a limited set of core modules, including a HTTP server, a file system module, and a module for working with streams.
 
+    - The Rise of Node.js:
+        Node.js became popular quickly because it could handle a large number of concurrent connections with high throughput. It was also popular because it allowed developers to use JavaScript on the server-side, which was already familiar to many front-end developers. As Node.js gained popularity, the Node.js community grew, and many new modules and frameworks were developed to extend its capabilities.
 
+    - Node.js Today:
+        Node.js is now a mature and stable platform used by many companies to build high-performance network applications. It has a large and active community of developers who continue to develop new modules and frameworks to extend its capabilities. Node.js is often used in combination with other technologies, such as databases, front-end frameworks, and cloud platforms, to build full-stack web applications.
 
+# node js:
+    -> keep in mind that it is a Non Blocking IO means it uses the concept of one single thread and this thread is responsible for handling multi
+        request at the same time the question is how does it do it?
+            -> it uses a concept of _workers basically the mean thread give tasks to other workers who will wait for the data and handle the request 
+        but what if the request is CPU intesive work mean will keep the main thread basy and want it to do CPU work in this case:
+            -> we must not use node js for CPU intensive work as it will be blocked 
+                "SO THE POWER OF NODE JS RELY ON IO INTENSIVE WORK AND NOT FOR CPU INTENSIVE WORK"
+    -> a question that comes in my mind about this is how does this single thread keep track of those wordkers this introduce another important 
+    concept witch is Asynchronous programming there will be an event loop and a call back that will know the worker got the response we want.
+    -> the other question is what those workers are if they are not threads ??
+        - as we will of course create handred of them if not thousand....Well the answer is that node js uses a concept of libuv witch is a special
+        library that can be used actually outside of node js and it give us the opportunity to make non blocking IO.
+        it is build in C lang
+            witch uses the system kernel
+                and has multiple threads.
+    -> the best way to setup node js is to use nvm node versiom manager.
 
+# browser vs Node.js
+    JavaScript is a popular programming language used in both the browser and server-side applications. However, there are significant differences between how it works in the browser and in Node.js.
+    1 -  Global Object
+        In a browser, the global object is window, while in Node.js, it is global. For example, to log the global object in a browser, we can use:
+            console.log(window);
+        To do the same in Node.js, we use:
+            console.log(global);
+    2 - Modules
+        We can import modules in the browser using script tags with the type attribute set to module and the src attribute set to the path of the module file. For example:
+            <script type="module" src="./module.js"></script>
+        ​We can then use the exported functions in our JavaScript code. For instance, we can import a sayHello function from a module called module.js and use it in our main JavaScript file as follows:
+            import { sayHello } from './module.js';
+            sayHello();
+        On the other hand, in Node.js, we use the require  or import statement to import modules:
+            import { module } from './module.js';
+    3 - DOM
+        The browser has a Document Object Model (DOM) that allows us to interact with HTML elements. For example, to change the text of an HTML element in the browser, we can use:
+            document.getElementById('elementId').innerHTML = 'New text';
+        However, in Node.js, there is no DOM, so we cannot access or manipulate HTML elements.
+    4 - Server vs. Website
+        Node.js is mainly used for server-side applications, while the browser is used for websites. For example, we can create a simple server in Node.js using:
+            ```jsx
+                const http = require('http');
 
+                const server = http.createServer((req, res) => {
+                res.write('Hello World!');
+                res.end();
+                });
 
+                server.listen(3000);
+            ```
+        On the other hand, in the browser, we can create a website using HTML, CSS, and JavaScript.
+    5 - Console
+        The console object works the same way in both the browser and Node.js. For example, to log a message in the browser, we can use:
+            console.log('Hello World!');
+        Similarly, in Node.js, we can use:
+            console.log('Hello World!');
+    JavaScript is used in both the browser and Node.js, but there are significant differences in how it works in each environment. However, there are also many similarities, and if you already know JavaScript, you should be able to quickly pick up Node.js. Understanding the differences and similarities between the two environments is crucial when developing applications in either of them.
 
+# Node REPL
+    -> by only using node we open an interacative console like the one in the browser and write direct js code and evaluate it directly,=.
+    Node.js is a popular open-source server environment built on Chrome's V8 JavaScript engine. One of the most useful tools provided by Node.js is the REPL (Read-Eval-Print-Loop), which allows you to execute JavaScript code interactively in a terminal.
+    The Node REPL is similar to a command-line interface for JavaScript. It is an interactive environment where you can enter JavaScript code and see the results immediately. It is great for testing out small pieces of code or experimenting with new features.
+    To start the Node REPL, simply open your terminal and type `node`. This will give you access to the Node REPL prompt where you can start typing your JavaScript code.
+
+    Here are some examples of how to use the Node REPL:
+
+    ```bash
+    // Basic arithmetic
+    > 2 + 2
+    4
+
+    // String manipulation
+    > 'hello, world'.toUpperCase()
+    'HELLO, WORLD'
+
+    // Defining a variable
+    > var x = 10
+    undefined
+    > x
+    10
+
+    // Using a function
+    > function add(a, b) { return a + b }
+    undefined
+    > add(3, 5)
+    8
+    ```
+
+    The Node REPL is a great tool for quickly testing out ideas, debugging code, or experimenting with new features. It can also be useful for prototyping code before integrating it into a larger project.
+    However, the Node REPL is not a substitute for a proper development environment. It is not designed for writing large or complex code, and it lacks many of the features and tools that are available in a full-fledged IDE or text editor.
+    Overall, the Node REPL is a useful tool for any JavaScript developer, but it should be used in tandem with a proper development environment to ensure the best results.
+
+# Creating a CLI
+    Process and Environment
+        ## Process
+            n Node.js, the process object is a global object that provides information about the current Node.js process and allows developers to interact with it. Some of the most commonly used properties and methods of the process object are:
+
+            - `process.argv`: an array that contains the command line arguments passed to the current process
+            - `process.pid`: the ID of the current process
+            - `process.env`: an object that contains the environment variables of the current process
+            - `process.exit()`: terminates the current process with an optional exit code
+
+            Here's an example of how to use the `process.argv` property to get the command line arguments passed to a Node.js script:
+
+            ```jsx
+            // script.js
+            console.log(process.argv);
+            ```
+
+            If we run this script with the command `node script.js arg1 arg2`, the output will be:
+
+            ```jsx
+            [ 'node', '/path/to/script.js', 'arg1', 'arg2' ]
+            ```
+
+            This shows that the `process.argv` array contains the path to the Node.js executable, the path to the script being run, and the two arguments passed to the script.  
+        ## Environment
+            The environment in Node.js refers to the set of variables that are available to a program at runtime. These variables are stored in the `process.env` object, which is an object containing key-value pairs of environment variable names and values.
+            Here's an example of how to use the `process.env` object to access environment variables:
+
+            ```jsx
+            // script.js
+            console.log(process.env.NODE_ENV);
+            ```
+
+            If we run this script with the command `NODE_ENV=production node script.js`, the output will be:
+
+            ```jsx
+            production
+            ```
+
+            This shows that we can access the value of the `NODE_ENV` environment variable using the `process.env` object.
+
+        ## Conclusion
+            In conclusion, understanding the process and environment in Node.js is crucial for building scalable and high-performance applications. By using the process object and environment variables, developers can access and manipulate the runtime environment of their programs.
 
 
 
